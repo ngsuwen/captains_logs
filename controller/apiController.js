@@ -23,12 +23,12 @@ router.post('/new', async(req, res) => {
 });
 
 // delete
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
     res.send('path working');
 });
 
 // edit
-router.put('/edit/:id', (req, res) => {
+router.put('/:id/edit', (req, res) => {
     res.send('path working');
 });
 
