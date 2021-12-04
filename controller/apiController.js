@@ -1,9 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const Logs = require('../models/logs')
+const methodOverride = require("method-override");
 
 //-------------------API------------------------
 router.use(express.urlencoded())
+//include the method-override package
+router.use(methodOverride("_method"));
 
 // view all
 router.get('/logs', (req, res) => {

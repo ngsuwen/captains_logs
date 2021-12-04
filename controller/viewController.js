@@ -1,12 +1,9 @@
 const express = require('express')
 const router=express.Router()
-const methodOverride = require("method-override");
 const Logs = require('../models/logs')
 
 //------------------MPA-------------------------
 router.use(express.urlencoded())
-//include the method-override package
-router.use(methodOverride("_method"));
 
 //page to view all
 router.get('/logs', async(req, res) => {
@@ -21,8 +18,9 @@ router.get('/new', (req, res) => {
 });
 
 //page to view single
-router.get('/:id', (req, res) => {
-    res.send('path working');
+router.get('/:id', async(req, res) => {
+    const data = await Logs.findById(req.params.id)
+    res.render('show.ejs', {data: data});
 });
 
 //page to edit a single

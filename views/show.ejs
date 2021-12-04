@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Logs</title>
+</head>
+
+<body>
+    <h1>Captain's Logs</h1>
+    <ul>
+        <li>
+            Title: <%= data.title %>
+        </li>
+        <li>
+            Entry: <%= data.entry %>
+        </li>
+        <li>
+            Is Ship Broken? : <%= data.shipIsBroken %>
+        </li>
+    </ul>
+    <form action='/logs'><button>Back to main</button></form>
+</body>
+
+</html>
