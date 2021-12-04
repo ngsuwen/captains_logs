@@ -14,6 +14,8 @@ const logsSchema = new Schema({
         type: Boolean,
         required: true
     }
+}, {
+    timestamps: true
 })
 
 const Logs = mongoose.model('Logs', logsSchema)
