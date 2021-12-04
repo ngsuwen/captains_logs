@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const Logs = require('../models/logs')
 
 //-------------------API------------------------
+router.use(express.urlencoded())
 
 // view all
 router.get('/logs', (req, res) => {
@@ -14,10 +16,11 @@ router.get('/:id', (req, res) => {
 });
 
 // create
-router.post('/new', (req, res) => {
-    res.send('path working');
+router.post('/new', async(req, res) => {
+    req.body.shipIsBroken = req.body.shipIsBroken? true:false
+    const log = await Logs.create(req.body)
+    res.send(log);
 });
-
 
 // delete
 router.delete('/delete/:id', (req, res) => {
