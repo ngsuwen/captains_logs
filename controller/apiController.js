@@ -5,7 +5,6 @@ const methodOverride = require("method-override");
 
 //-------------------API------------------------
 router.use(express.urlencoded())
-//include the method-override package
 router.use(methodOverride("_method"));
 
 // view all
@@ -26,12 +25,13 @@ router.post('/new', async(req, res) => {
 });
 
 // delete
-router.delete('/:id/delete', (req, res) => {
-    res.send('path working');
+router.delete('/:id', async(req, res) => {
+    const log = await Logs.findByIdAndDelete(req.params.id)
+    res.send(log)
 });
 
 // edit
-router.put('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
     res.send('path working');
 });
 
