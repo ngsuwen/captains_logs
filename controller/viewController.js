@@ -14,7 +14,7 @@ router.get('/logs', (req, res) => {
 
 //page to create new
 router.get('/new', (req, res) => {
-    res.send('new');
+    res.render('new.ejs');
 });
 
 //page to edit a single
