@@ -6,6 +6,9 @@
 </head>
 <body>
     <h1>Captain's Logs</h1>
+    <form action='/new'>
+      <button>New</button>
+   </form>
     <ul>
         <% for (let i = 0; i < logs.length; i++) { %>
         <li>
@@ -15,7 +18,7 @@
           <form action='/api/<%=logs[i]._id%>/?_method=DELETE' method="POST">
             <input type="submit" value="DELETE"/>
          </form>
-         <a href="/api/<%=logs[i]._id%>/edit">
+         <a href="/<%=logs[i]._id%>/edit">
           Edit
          </a>
         </li>

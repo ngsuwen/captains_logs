@@ -7,32 +7,24 @@ const methodOverride = require("method-override");
 router.use(express.urlencoded())
 router.use(methodOverride("_method"));
 
-// view all
-router.get('/logs', (req, res) => {
-    res.send('logs');
-});
-
-// view one
-router.get('/:id', (req, res) => {
-    res.send('path working');
-});
-
 // create
 router.post('/new', async(req, res) => {
     req.body.shipIsBroken = req.body.shipIsBroken? true:false
     const log = await Logs.create(req.body)
-    res.send(log);
+    res.redirect('/logs')
 });
 
 // delete
 router.delete('/:id', async(req, res) => {
     const log = await Logs.findByIdAndDelete(req.params.id)
-    res.send(log)
+    res.redirect('/logs')
 });
 
 // edit
-router.put('/:id', (req, res) => {
-    res.send('path working');
+router.put('/:id', async(req, res) => {
+    req.body.shipIsBroken = req.body.shipIsBroken? true:false
+    const log = await Logs.findByIdAndUpdate(req.params.id, req.body)
+    res.redirect('/logs')
 });
 
 module.exports = router

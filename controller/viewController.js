@@ -8,7 +8,6 @@ router.use(express.urlencoded())
 //page to view all
 router.get('/logs', async(req, res) => {
     const logs=await Logs.find()
-    console.log(logs[1])
     res.render('index.ejs', {logs:logs});
 });
 
@@ -24,8 +23,9 @@ router.get('/:id', async(req, res) => {
 });
 
 //page to edit a single
-router.get('/:id/edit', (req, res) => {
-    res.send('path working');
+router.get('/:id/edit', async(req, res) => {
+    const data = await Logs.findById(req.params.id)
+    res.render('edit.ejs', {data: data});
 });
 
 module.exports = router
